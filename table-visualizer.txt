@@ -1,0 +1,48 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table colors {
+  id integer [primary key]
+  name text
+}
+
+Table music {
+  id integer [primary key]
+  name text
+  type_of_work text
+  instrumental boolean
+  composition_year integer
+  composer text
+  sample blob
+}
+
+Table occupations {
+  id integer [primary key]
+  name text
+  category text
+  degree_needed boolean
+}
+
+Table users {
+  id integer [primary key]
+  name text
+}
+
+Table posts {
+  id integer [primary key]
+  author integer
+}
+
+Table comments {
+  id integer [primary key]
+  author integer
+  post integer
+  content text
+}
+
+
+Ref: "posts"."author" < "users"."id"
+
+Ref: "comments"."id" < "users"."id"
+
+Ref: "comments"."post" < "posts"."id"
